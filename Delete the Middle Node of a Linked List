@@ -1,0 +1,21 @@
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+
+        ListNode sn = head , fn = head, prev = null;
+        
+        while (fn != null && fn.next != null) {
+            prev = sn;
+            sn = sn.next;
+            fn = fn.next.next;
+        }
+
+        if(head.next == null) return null;
+
+        // delete midd node
+        prev.next=sn.next;
+        sn.next = null;
+
+        return head;
+    } 
+
+}
