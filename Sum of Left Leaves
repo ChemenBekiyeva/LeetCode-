@@ -1,0 +1,26 @@
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        // get to the leaf node first.  if(root.left == null && root.right == null)
+        // find out if leaf is a left leaf.
+        
+        int sum = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root != null ) queue.add(root);
+        
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            while (size > 0 ){
+                TreeNode temp = queue.poll();
+                if (temp.left != null){
+                    if (temp.left.left == null && temp.left.right == null) sum = sum + temp.left.val;
+                    queue.offer(temp.left);
+                }
+                if (temp.right != null){
+                    queue.offer(temp.right);
+                }
+                size--;
+            }
+        }
+        return sum;
+    }
+}
